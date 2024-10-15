@@ -1,0 +1,132 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body and HTML */
+html,
+body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Header */
+header {
+  background: linear-gradient(0deg, #262626 5%, #1a1a1a 44%);
+  color: #fff;
+  padding: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: flex;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Container within header */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo styling */
+.logo img {
+  width: 60px;
+}
+
+/* Site name styling */
+.site-name {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Header buttons container */
+.header-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+/* Individual header button styling */
+.header-button {
+  background-color: #333;
+  color: #ffffff;
+  padding: 12px 23px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Header button hover effect */
+.header-button:hover {
+  text-decoration: none;
+  color: rgb(140, 169, 249);
+  background-color: #555;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(95, 138, 255, 0.3);
+}
+
+/* Viewer container styling */
+.viewer-container {
+  width: 100%;
+  height: calc(100% - 80px); /* Deduct header height */
+  position: fixed;
+  top: 80px;
+  left: 0;
+  overflow: hidden;
+  z-index: 50;
+}
+
+/* Canvas styling to occupy full container */
+#viewer {
+  width: 100%;
+  height: 100%;
+}
+
+/* NavCube positioning */
+#navCubeCanvas {
+  position: flex;
+  bottom: 10px;
+  right: 10px;
+  width: 0px;
+  height: 0px;
+  z-index: 150;
+  pointer-events: none;
+}
+
+#models-select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 1px;
+  border: 0px solid #444;
+  background-color: #333;
+  border-radius: 10px;
+  color: #fff;
+  z-index: 100;
+  outline: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#models-select:hover {
+  background-color: #444;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#models-select:focus {
+  box-shadow: 0 0 10px rgba(95, 138, 255, 0.7);
+}
+
+/* Added z-index to keep navCube and select on top of viewer */
+.viewer-container canvas {
+  z-index: 1;
+}

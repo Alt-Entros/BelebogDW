@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <title>3D Model Viewer with Navbar</title>
+    <style>
+      body {
+        position: fixed;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      .navbar {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .embedded-viewer {
+        width: 100vw;
+        height: 87vh;
+        border: none;
+        display: block;
+        margin-top: 0px;
+      }
+
+      .navcube {
+        position: flex;
+        bottom: 15px;
+        right: 15px;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="../huab/hab.html" class="logo">
+          <img src="img3d/Group 2.png" alt="Логотип" />
+        </a>
+        <h1 class="site-name">Belobog DV</h1>
+        <div class="header-buttons">
+          <a href="../cotolog/cotolog.html" class="header-button"> Каталог </a>
+          <select id="models-select">
+            <option value="0">MAP</option>
+            <option value="1">RAC</option>
+            <option value="2">Clinic</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <iframe
+      class="embedded-viewer"
+      id="embeddedViewer"
+      src="https://xeokit.github.io/xeokit-bim-viewer/app/index.html?projectId=MAP"
+    ></iframe>
+    <div class="navcube" id="navCube"></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      models = ["MAP", "RAC", "Clinic"];
+
+      const selector_obj = document.querySelector("#models-select");
+      selector_obj.addEventListener("change", (e) => {
+        onloadModels(models[selector_obj.value]);
+      });
+
+      const obj_selector = document.querySelectorAll("#models-select");
+      obj_selector.addEventListener();
+      function onloadModels(obj) {
+        model = obj;
+        const iframeElement = document.getElementById("embeddedViewer");
+        if (!iframeElement) {
+          throw "IFRAME not found";
+        }
+        const searchStr = window.location.search || "?projectId=" + model;
+        iframeElement.src =
+          "https://xeokit.github.io/xeokit-bim-viewer/app/index.html" +
+          searchStr;
+        iframeElement.addEventListener("load", function () {
+          iframeElement.focus();
+        });
+      }
+
+      window.onload = onloadModels();
+
+      // Добавление NavCubePlugin в правый нижний угол
+      const navCube = document.getElementById("navCube");
+      navCube.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+      navCube.innerHTML = `<p style="text-align: center; line-height: 100px;">NavCube Placeholder</p>`;
+    </script>
+  </body>
+</html>
